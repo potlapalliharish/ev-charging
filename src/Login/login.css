@@ -1,0 +1,54 @@
+.login-page {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-heading {
+  font-size: 36px;
+  color: #0b3c04;
+  text-shadow: 1px 1px #ccc;
+  margin-bottom: 30px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.user-button, .host-button {
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 1px 1px #000;
+  cursor: pointer;
+}
+
+.user-button {
+  background-color: #1aa208;
+}
+
+.host-button {
+  background-color: #1aa208;
+}
+  
+  @media screen and (min-width: 768px) {
+    .login-page {
+      max-width: 800px;
+    }
+  
+    .button-container {
+      flex-direction: row;
+    }
+  
+    .user-button, .host-button {
+      margin-right: 10px;
+    }
+  }
