@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import CompletedStamp from '../completed-stamp.png'
 
-
-function HostCard({ name, distance, price, link, requested, onApproved, onRejected, onComplete, isApproved, isCompleted }) {
+function HostCard({ name, distance, price, link, requested, onApproved, onRejected, onComplete, isApproved, isCompleted, onEdit }) {
     const handleNavigation = () => {
         window.open(link, "_blank");
     }
@@ -14,15 +14,19 @@ function HostCard({ name, distance, price, link, requested, onApproved, onReject
     const handleCompleteClick = () => {
         onComplete(name);
     };
+    const handleEdit = () => {
+        onEdit(name);
+    };
+    
     return (
         <div className="card">
             {
                 isCompleted &&
-                <img src="https://www.citypng.com/public/uploads/preview/hd-green-completed-round-stamp-png-31625678967vvbcblyvfm.png" className="approved-stamp" alt="Approved" />
+                <img src={CompletedStamp} className="approved-stamp" alt="Approved" />
                 }
             <h2>{name}</h2>
             <p>Price: {price} /min</p>
-            {!requested &&<div className="edit-btn-container"><button className="edit-btn">Edit</button></div>}
+            {!requested &&<div className="edit-btn-container"><button onClick={handleEdit} className="edit-btn">Edit</button></div>}
             {requested &&
             
                 !isApproved ?

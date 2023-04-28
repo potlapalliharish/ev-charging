@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiNavigation, Fi } from 'react-icons/fi';
-
+import ApprovedStamp from '../Approved-Stamp.png';
+import CompletedStamp from '../completed-stamp.png'
 function Card({ name, price, latitude, longitude, link, requested, onRequested, onCanceled, isApproved, isCompleted },) {
     const handleNavigation = () => {
         window.open(link, "_blank");
@@ -51,9 +52,9 @@ function Card({ name, price, latitude, longitude, link, requested, onRequested, 
         <div className={`card`}>
             {isApproved && (
                 isCompleted ? 
-                <img src="https://www.citypng.com/public/uploads/preview/hd-green-completed-round-stamp-png-31625678967vvbcblyvfm.png" className="approved-stamp" alt="Approved" />
+                <img src={CompletedStamp} className="approved-stamp" alt="Approved" />
                 :
-                <img src="https://www.pngall.com/wp-content/uploads/2/Approved-Stamp.png" className="approved-stamp" alt="Approved" />
+                <img src={ApprovedStamp} className="approved-stamp" alt="Approved" />
             )}
             <h2>{name}</h2>
             <p>Distance: {distance} KM</p>

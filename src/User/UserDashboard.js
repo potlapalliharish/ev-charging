@@ -6,14 +6,13 @@ import { RiLogoutBoxLine } from 'react-icons/ri';
 import * as SlotsService from '../Services/SlotsService';
 import * as RequestsService from '../Services/RequestsService';
 
-function UserDashboard() {
+function UserDashboard({reRender}) {
     const navigate = useNavigate()
-    const [count, setCount] = useState(0);
     const handleBack = () => {
         navigate('/');
     };
     const requests = RequestsService.readAllItems();
-    const cards = SlotsService.readAllActiveItems().filter(c => !requests.find(r => r.name === c.name));
+    const cards = SlotsService.readAllActiveItems().filter(c => !requests.find(r => r.name === c.name && !r.isCompleted));
 
     const [activeTab, setActiveTab] = useState('available');
 
@@ -27,13 +26,14 @@ function UserDashboard() {
             isApproved: false,
             isCompleted: false
         })
+        setActiveTab('requested');
         //hack to force rerender a component
-        setCount(count + 1);
+        reRender()
     };
     const onCanceled = (name) => {
         RequestsService.deleteItem(name)
         //hack to force rerender a component
-        setCount(count + 1);
+        reRender()
     };
 
     const getLocationLink = (card) => {

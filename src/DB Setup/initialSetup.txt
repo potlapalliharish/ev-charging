@@ -1,37 +1,42 @@
 localStorage.setItem('slots',JSON.stringify([
     {
       name: 'Station 1',
-      price: '₹10',
+      price: '10',
       latitude:17.461469367757285,
       longitude:78.39723178955711,
-      isEnabled:true
+      isEnabled:true,
+      phoneNumber:12354
     },
     {
       name: 'Station 2',
-      price: '₹20',
+      price: '20',
       latitude:17.461469367757285,
       longitude:78.39723178955711,
-      isEnabled:true
+      isEnabled:true,
+      phoneNumber:12354
     },
     {
       name: 'Station 3',
-      price: '₹30',
+      price: '30',
       latitude:17.461469367757285,
       longitude:78.39723178955711,
-      isEnabled:true
+      isEnabled:true,
+      phoneNumber:12354
     },
     {
         name: 'Station 4',
-        price: '₹20',
+        price: '20',
         latitude:17.461469367757285,
         longitude:78.39723178955711,
-        isEnabled:true
+        isEnabled:true,
+      phoneNumber:12354
       },
       {
         name: 'Station 5',
-        price: '₹30',
+        price: '30',
         latitude:17.412735462281013,
         longitude:78.37015871564049,
-        isEnabled:false
+        isEnabled:false,
+      phoneNumber:12354
       },
   ]));

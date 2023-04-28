@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SlotModal.module.css";
-import { updateItem } from "../Services/SlotsService";
+import { updateItem, createItem } from "../Services/SlotsService";
 
-function SlotModal({showModalProp, modalType, currentCard, refreshCards}) {
-console.log('helllo');
+function SlotModal({ modalType, currentCard, refreshCards, onClose}) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isEnabled, setIsEnabled] = useState(false);
-  const [showModal, setShowModal] = useState(showModalProp);
 
   useEffect(()=>{
-    console.log("Slot Modal is ", showModalProp);
-    setShowModal(showModalProp)
     if(currentCard) {
-        const {name, price, latitude, longitude} = currentCard;
+        const {name, price, latitude, longitude,phoneNumber, isEnabled} = currentCard;
         setName(name)
         setPrice(price);
         setLatitude(latitude)
         setLongitude(longitude)
+        setPhoneNumber(phoneNumber)
+        setIsEnabled(isEnabled)
     }
   }, [])
 
@@ -28,30 +26,34 @@ console.log('helllo');
     e.preventDefault();
     refreshCards()
     if(modalType == 'edit') {
-        updateItem(currentCard.name, {name, price})
+        updateItem(currentCard.name, {name,
+          price,
+          latitude,
+          longitude,
+          phoneNumber,
+          isEnabled})
+    }else{
+      createItem({
+        name,
+        price,
+        latitude,
+        longitude,
+        phoneNumber,
+        isEnabled
+      })
     }
-    // do something with the form data
-    console.log({
-      name,
-      price,
-      latitude,
-      longitude,
-      phoneNumber,
-      isEnabled,
-    });
-    setShowModal(false);
+    onClose();
   };
 
   const handleModalClick = (e) => {
     if (e.target.classList.contains(styles.modal)) {
-      setShowModal(false);
+      onClose();
     }
   };
 
   return (
     <>
-      {showModal && (
-        <div className={styles.modal} onClick={handleModalClick}>
+        <div className={styles.modal}>
           <div className={styles.modalContent}>
             <h3>{modalType == 'add' ?  'Add a Slot': "Edit the slot"}</h3> 
             <form onSubmit={handleSubmit}>
@@ -113,11 +115,12 @@ console.log('helllo');
                   {isEnabled ? "Enabled" : "Disabled"}
                 </label>
               </div>
+              <button onClick={onClose} type="submit">Cancel</button>
+              &nbsp;
               <button type="submit">Submit</button>
             </form>
           </div>
         </div>
-      )}
     </>
   );
 }
