@@ -1,17 +1,17 @@
 import React,{ useState } from 'react';
 import { FiNavigation, Fi } from 'react-icons/fi';
 
-function Card({ name, distance, price, link }) {
+function Card({ name, distance, price, link , requested, onRequested, onCanceled}, ) {
     const handleNavigation = () => {
         window.open(link, "_blank");
       }
-      const [requested, setRequested] = useState(false);
+      //const [requested, setRequested] = useState(false);
 
       const handleRequestClick = () => {
-        setRequested(true);
+        onRequested(name);
       };
       const handleCancelClick = () => {
-        setRequested(false);
+        onCanceled(name);
       };
     return (
         <div className="card">
