@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import HostCard from './HostCard';
 import { FiPlus, Fi } from 'react-icons/fi';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 function HostDashboard() {
   const navigate = useNavigate()
   const handleBack = () => {
@@ -28,13 +29,20 @@ function HostDashboard() {
   ];
   return (
     <div className="dashboard">
+      <div>
       <nav className="dashboard-nav">
         <Link to="/"><img src="https://cdn-icons-png.flaticon.com/512/2991/2991201.png" /></Link>
-        <Link to="/host-dashboard">Dashboard</Link>
-        <Link to="/"><button className="logout-btn">Logout</button></Link>
+        <div className="dashboard-tabs">
+          <button>
+            Slots
+          </button>
+          <button>
+            Requests
+          </button>
+        </div>
+        <Link to="/"><RiLogoutBoxLine size={25} color="#fff" /></Link>
       </nav>
-      <h1>Host Dashboard</h1>
-      <p>Welcome to your dashboard. Here you can view your slots.</p>
+      </div>
       <div className="plus-icon"><button>
         <FiPlus />
       </button>
