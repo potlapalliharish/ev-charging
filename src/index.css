@@ -104,7 +104,7 @@ code {
   background-color: #266cdd;
 }
 
-.request-btn-container {
+.request-btn-container, .edit-btn-container {
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -112,7 +112,7 @@ code {
 }
 
 .request-btn,
-.cancel-btn {
+.cancel-btn,.edit-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -136,4 +136,25 @@ code {
 .request-btn:hover,
 .cancel-btn:hover {
   background-color: #2a8e5c;
+}
+
+.plus-icon {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.plus-icon button {
+  margin-left: auto;
+  margin-right: 10px; 
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 20px;
+  height: 200px;
+  overflow-y: scroll;
 }
