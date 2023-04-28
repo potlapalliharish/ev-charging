@@ -50,7 +50,7 @@ function Card({ name, price,latitude, longitude, link , requested, onRequested, 
     return (
         <div className="card">
         <h2>{name}</h2>
-        <p>Distance: {distance}</p>
+        <p>Distance: {distance} KM</p>
         <p>Price: {price} /min</p>
         <button className="nav-icon" onClick={handleNavigation}>
           <FiNavigation />
