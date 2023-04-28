@@ -35,9 +35,9 @@ function readAllItems() {
   return readData();
 }
 
-function updateItem(id, updates) {
+function updateItem(name, updates) {
   const data = readData();
-  const index = data.findIndex((item) => item.id === id);
+  const index = data.findIndex((item) => item.name === name);
   if (index !== -1) {
     data[index] = { ...data[index], ...updates };
     writeData(data);

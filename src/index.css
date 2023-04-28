@@ -111,7 +111,18 @@ code {
   left: 50%;
   transform: translateX(-50%);
 }
-
+.approve-btn-container {
+  position: absolute;
+  bottom: 0;
+  left: 62%;
+  transform: translateX(-50%);
+}
+.reject-btn-container {
+  position: absolute;
+  bottom: 0;
+  left: 38%;
+  transform: translateX(-50%);
+}
 .request-btn,
 .cancel-btn,.edit-btn {
   display: flex;
@@ -129,7 +140,22 @@ code {
   margin-right: 1rem;
   margin-bottom:5px;
 }
-
+.reject-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 30px;
+  background-color: #ff7675;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin-right: 1rem;
+  margin-bottom:5px;
+}
 .cancel-btn {
   background-color: #ff7675;
 }
