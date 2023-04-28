@@ -1,37 +1,37 @@
 localStorage.setItem('slots',JSON.stringify([
     {
       name: 'Station 1',
-      distance: '10 km',
       price: '₹10',
-      isEnabled:true,
-      link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
+      latitude:17.461469367757285,
+      longitude:78.39723178955711,
+      isEnabled:true
     },
     {
       name: 'Station 2',
-      distance: '20 km',
       price: '₹20',
-      isEnabled:true,
-      link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
+      latitude:17.461469367757285,
+      longitude:78.39723178955711,
+      isEnabled:true
     },
     {
       name: 'Station 3',
-      distance: '30 km',
       price: '₹30',
-      isEnabled:true,
-      link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
+      latitude:17.461469367757285,
+      longitude:78.39723178955711,
+      isEnabled:true
     },
     {
         name: 'Station 4',
-        distance: '20 km',
         price: '₹20',
-        isEnabled:true,
-        link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
+        latitude:17.461469367757285,
+        longitude:78.39723178955711,
+        isEnabled:true
       },
       {
         name: 'Station 5',
-        distance: '30 km',
         price: '₹30',
-        isEnabled:false,
-        link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
+        latitude:17.412735462281013,
+        longitude:78.37015871564049,
+        isEnabled:false
       },
   ]));

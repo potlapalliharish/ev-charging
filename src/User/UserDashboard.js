@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Card from './Card';
@@ -14,7 +14,7 @@ function UserDashboard() {
     };
     const requests = RequestsService.readAllItems();
     const cards = SlotsService.readAllActiveItems().filter(c => !requests.find(r => r.name === c.name));
-
+    
     const [activeTab, setActiveTab] = useState('available');
 
     const handleTabClick = (tab) => {
@@ -32,6 +32,10 @@ function UserDashboard() {
         RequestsService.deleteItem(name)
         //hack to force rerender a component
         setCount(count+1);
+      };
+     
+      const getLocationLink =(card) =>{
+        return `https://www.google.com/maps/dir/?api=1&origin=My+Location&destination=${card.latitude},${card.longitude}`;
       };
   return (
     <div className="dashboard">
@@ -56,9 +60,9 @@ function UserDashboard() {
     
     <div className="cards-container">
         {activeTab === 'available' &&
-            cards.map((card, index) => <Card key={index} {...card} requested={false} onRequested={onRequested}/>)}
+            cards.map((card, index) => <Card key={index} {...card} link={getLocationLink(card)} requested={false} onRequested={onRequested}/>)}
         {activeTab === 'requested' && 
-            requests.map((card, index) => <Card key={index} {...card} requested={true} onCanceled={onCanceled}/>)}
+            requests.map((card, index) => <Card key={index} {...card} link={getLocationLink(card)} requested={true} onCanceled={onCanceled}/>)}
       </div>
   </div>
   );
