@@ -31,17 +31,89 @@ code {
   font-size: 18px;
 }
 
-.dashboard-nav .logout-btn {
-  background-color: white;
-  color: #66BB6A; /* set your desired green color here */
-  border: none;
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
+.dashboard-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #4caf50;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 1;
 }
 
 .dashboard-nav .logout-btn:hover {
   background-color: #66BB6A; /* set your desired green color here */
   color: white;
+}
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4f86df;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.nav-icon:hover {
+  background-color: #266cdd;
+}
+
+.request-btn-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.request-btn,
+.cancel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 30px;
+  background-color: #3bb273;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin-right: 1rem;
+  margin-bottom:5px;
+}
+
+.cancel-btn {
+  background-color: #ff7675;
+}
+
+.request-btn:hover,
+.cancel-btn:hover {
+  background-color: #2a8e5c;
 }

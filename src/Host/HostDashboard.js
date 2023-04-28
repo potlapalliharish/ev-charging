@@ -10,7 +10,7 @@ function HostDashboard() {
   return (
     <div className="dashboard">
     <nav className="dashboard-nav">
-      <Link to="/"><img src="https://cdn-icons-png.flaticon.com/512/4830/4830177.png" /></Link>
+      <Link to="/"><img src="https://cdn-icons-png.flaticon.com/512/2991/2991201.png" /></Link>
       <Link to="/host-dashboard">Dashboard</Link>
       <Link to="/"><button className="logout-btn">Logout</button></Link>
     </nav>
