@@ -30,7 +30,10 @@ function readItem(id) {
   const data = readData();
   return data.find((item) => item.id === id);
 }
-
+function readAllActiveItems(){
+    const data = readData();
+  return data.filter((item) => item.isEnabled);
+}
 function readAllItems() {
   return readData();
 }
@@ -61,4 +64,5 @@ module.exports = {
     readAllItems,
     updateItem,
     deleteItem,
+    readAllActiveItems
   };

@@ -3,45 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import { RiLogoutBoxLine } from 'react-icons/ri';
-
+import {readAllActiveItems} from '../Services/SlotsService';
 function UserDashboard() {
     const navigate = useNavigate()
 
     const handleBack = () => {
         navigate('/');
     };
-    const cards = [
-        {
-          name: 'Station 1',
-          distance: '10 km',
-          price: '₹10',
-          link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
-        },
-        {
-          name: 'Station 2',
-          distance: '20 km',
-          price: '₹20',
-          link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
-        },
-        {
-          name: 'Station 3',
-          distance: '30 km',
-          price: '₹30',
-          link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
-        },
-        {
-            name: 'Station 4',
-            distance: '20 km',
-            price: '₹20',
-            link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
-          },
-          {
-            name: 'Station 5',
-            distance: '30 km',
-            price: '₹30',
-            link: 'https://www.google.com/maps/dir//inorbit+mall/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3bcb972fe66d4711:0x7f2d27691ca15313?sa=X&ved=2ahUKEwijmLfLzsr-AhX2qVYBHei5CtkQ9Rd6BAhvEAQ',
-          },
-      ];
+    const cards = readAllActiveItems();
     
   return (
     <div className="dashboard">
