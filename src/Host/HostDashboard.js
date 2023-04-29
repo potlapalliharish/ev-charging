@@ -7,9 +7,12 @@ import { RiLogoutBoxLine } from 'react-icons/ri';
 import { useState } from 'react';
 import * as SlotsService from '../Services/SlotsService';
 import * as RequestsService from '../Services/RequestsService';
+import { ThemeProvider } from '@mui/material/styles';
+// import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
+import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
 import SlotModal from '../SlotModal/SlotModal';
 import { RequestStatusEnum } from '../Models/RequestStatusEnum';
-function HostDashboard({reRender}) {
+function HostDashboard({ reRender }) {
   const navigate = useNavigate()
   const handleBack = () => {
     navigate('/');
@@ -51,21 +54,21 @@ function HostDashboard({reRender}) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [currentCard, setcurrentCard] = useState(null);
-  const handleAddModal=()=>{
+  const handleAddModal = () => {
     setShowAddModal(true);
   }
-  const handleCloseAddModal=()=>{
+  const handleCloseAddModal = () => {
     setShowAddModal(false);
   }
-  const handleEditModal=(name)=>{
+  const handleEditModal = (name) => {
     setcurrentCard(cards.find(c => c.name === name));
     setShowEditModal(true);
   }
-  const handleCloseEditModal=()=>{
+  const handleCloseEditModal = () => {
     setcurrentCard(null)
     setShowEditModal(false);
   }
-  const refreshCards=()=>{
+  const refreshCards = () => {
     cards = SlotsService.readAllItems();
   }
   return (
@@ -84,16 +87,17 @@ function HostDashboard({reRender}) {
           <Link to="/"><RiLogoutBoxLine size={25} color="#fff" /></Link>
         </nav>
       </div>
-      {activeTab === 'slots' && <div className="plus-icon"><button onClick={handleAddModal}>
-        <FiPlus />
-      </button>
-      </div>}
+      {activeTab === 'slots' &&
+
+        <AddBoxRoundedIcon onClick={handleAddModal}  sx={{ color: '#3bb273', marginTop: "55px", marginLeft: "90%", transform: "scale(1.3)" }} />
+    
+      }
       <div className="cards-container">
-        {activeTab === 'slots' &&cards.map((card, index) => (
-          <HostCard key={index} {...card} requested={false} onEdit={handleEditModal}/>
+        {activeTab === 'slots' && cards.map((card, index) => (
+          <HostCard key={index} {...card} requested={false} onEdit={handleEditModal} />
         ))}
-        {activeTab === 'requests' &&requests.map((card, index) => (
-          <HostCard key={index} {...card} requested={true} onApproved={handleApproveClick} onStart={handleStartClick} onRejected={handleRejectClick} onComplete={handleCompleteClick}/>
+        {activeTab === 'requests' && requests.map((card, index) => (
+          <HostCard key={index} {...card} requested={true} onApproved={handleApproveClick} onStart={handleStartClick} onRejected={handleRejectClick} onComplete={handleCompleteClick} />
         ))}
       </div>
       {showAddModal && <SlotModal modalType="add" refreshCards={refreshCards} onClose={handleCloseAddModal} />}

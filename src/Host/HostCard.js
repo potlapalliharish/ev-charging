@@ -41,34 +41,37 @@ function HostCard({ name, distance, price, link, requested, onApproved, onReject
             {
                 status == RequestStatusEnum.COMPLETED &&
                 <img src={CompletedStamp} className="approved-stamp" alt="Approved" />
-                }
-            <h2>{name}</h2>
-            {status == RequestStatusEnum.COMPLETED ?
+            }
+            <div className="card-details">
+                <h2>{name}</h2>
+                {status == RequestStatusEnum.COMPLETED ?
                 <p>Total Price: ₹ {Math.ceil((new Date(endTime)-new Date(startTime))/60000)*price} </p>
             :
             <p>Price: ₹ {price} /min</p>
+           
             }
             {(status == RequestStatusEnum.APPROVED && !!startTime) &&
             <p>Time Elapsed: {timer}</p>
             }
-            {!requested &&<div className="edit-btn-container"><button onClick={handleEdit} className="edit-btn">Edit</button></div>}
+             </div>
+            {!requested && <div className="edit-btn-container"><button onClick={handleEdit} className="edit-btn">Edit</button></div>}
             {requested &&
-            
+
                 status == RequestStatusEnum.REQUESTED ?
                 <>
-                <div className="reject-btn-container"><button onClick={handleRejectClick} className="reject-btn">Reject</button></div>
-                <div className="approve-btn-container"><button onClick={handleApproveClick} className="edit-btn">Approve</button></div>
+                    <div className="reject-btn-container"><button onClick={handleRejectClick} className="reject-btn">Reject</button></div>
+                    <div className="approve-btn-container"><button onClick={handleApproveClick} className="edit-btn">Approve</button></div>
                 </>
                 :
-                (status == RequestStatusEnum.APPROVED) && (
+                (status == RequestStatusEnum.APPROVED) &&  (
                     !startTime ?
                     <div className="edit-btn-container"><button onClick={handleStartClick} className="edit-btn">Start</button></div>
                     :
                     <div className="edit-btn-container"><button onClick={handleCompleteClick} className="edit-btn">Complete</button></div>
 
                 )
-            
-            
+
+
             }
         </div>
     );

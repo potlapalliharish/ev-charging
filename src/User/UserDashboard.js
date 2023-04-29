@@ -59,7 +59,7 @@ function UserDashboard({reRender}) {
                 <Link to="/"><RiLogoutBoxLine size={25} color="#fff" /></Link>
             </nav>
 
-            <div className="cards-container">
+            <div className="cards-container" style={{marginTop: "3.5rem"}}>
                 {activeTab === 'available' &&
                     cards.map((card, index) => <Card key={index} {...card} link={getLocationLink(card)} requested={false} onRequested={onRequested} />)}
                 {activeTab === 'requested' &&
