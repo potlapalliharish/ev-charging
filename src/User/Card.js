@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FiNavigation, Fi } from 'react-icons/fi';
 import ApprovedStamp from '../Approved-Stamp.png';
-import CompletedStamp from '../completed-stamp.png'
-function Card({ name, price, latitude, longitude, link, requested, onRequested, onCanceled, isApproved, isCompleted },) {
+import CompletedStamp from '../completed-stamp.png';
+import { RequestStatusEnum } from '../Models/RequestStatusEnum';
+import Charging from '../charger1.gif'
+function Card({ name, price, latitude, longitude, link, requested, onRequested, onCanceled, status, startTime, endTime},) {
     const handleNavigation = () => {
         window.open(link, "_blank");
     }
@@ -47,25 +49,52 @@ function Card({ name, price, latitude, longitude, link, requested, onRequested, 
     };
     useEffect(() => {
         calculateDistance()
-    });
+    },[]);
+    const [timer, setTimer] = useState("00:00:00");
+    useEffect(() => {
+        const interval = setInterval(() => {
+            var diff = Math.abs(new Date() - new Date(startTime));
+
+            var ms = diff % 1000;
+            diff = (diff - ms) / 1000
+            var ss = diff % 60;
+            diff = (diff - ss) / 60
+            var mm = diff % 60;
+            diff = (diff - mm) / 60
+            var hh = diff % 24;
+            setTimer(!!startTime ? ('0' + hh).slice(-2)+":"+('0' + mm).slice(-2)+":"+('0' + ss).slice(-2) :"00:00:00")
+        }, 1000);
+        return () => clearInterval(interval);
+      }, [startTime]);
     return (
         <div className={`card`}>
-            {isApproved && (
-                isCompleted ? 
-                <img src={CompletedStamp} className="approved-stamp" alt="Approved" />
-                :
-                <img src={ApprovedStamp} className="approved-stamp" alt="Approved" />
+            {(status == RequestStatusEnum.APPROVED  )&& (
+                (
+                    !!startTime ?
+                <img src={Charging} className="approved-stamp" alt="Approved" />:
+                <img src={ApprovedStamp} className="approved-stamp" alt="Approved" />)
+                
             )}
+            {status == RequestStatusEnum.COMPLETED && 
+                <img src={CompletedStamp} className="approved-stamp" alt="Approved" />}
             <h2>{name}</h2>
-            <p>Distance: {distance} KM</p>
-            <p>Price: {price} /min</p>
-            {!isCompleted &&<button className="nav-icon" onClick={handleNavigation}>
+            {(status == RequestStatusEnum.APPROVED && !!startTime) ?
+            <p>Time Elapsed: {timer}</p>
+            :<p>Distance: {distance} KM</p>
+            }
+            
+            {status == RequestStatusEnum.COMPLETED ?
+                <p>Total Price: ₹ {Math.ceil((new Date(endTime)-new Date(startTime))/60000)*price} </p>
+            :
+            <p>Price: ₹ {price} /min</p>
+            }
+            {status != RequestStatusEnum.COMPLETED  &&<button className="nav-icon" onClick={handleNavigation}>
                 <FiNavigation />
             </button>}
             <div className="request-btn-container">
                 {!requested ? (
                     <button className="request-btn" onClick={handleRequestClick}>Request</button>
-                ) : (!isApproved &&
+                ) : (status == RequestStatusEnum.REQUESTED   &&
                     <button className="cancel-btn" onClick={handleCancelClick}>Cancel</button>
                 )}
             </div>

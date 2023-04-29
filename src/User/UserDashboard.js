@@ -5,14 +5,14 @@ import Card from './Card';
 import { RiLogoutBoxLine } from 'react-icons/ri';
 import * as SlotsService from '../Services/SlotsService';
 import * as RequestsService from '../Services/RequestsService';
-
+import { RequestStatusEnum } from '../Models/RequestStatusEnum';
 function UserDashboard({reRender}) {
     const navigate = useNavigate()
     const handleBack = () => {
         navigate('/');
     };
     const requests = RequestsService.readAllItems();
-    const cards = SlotsService.readAllActiveItems().filter(c => !requests.find(r => r.name === c.name && !r.isCompleted));
+    const cards = SlotsService.readAllActiveItems().filter(c => !requests.find(r => r.name === c.name && r.status != RequestStatusEnum.COMPLETED));
 
     const [activeTab, setActiveTab] = useState('available');
 
@@ -23,8 +23,7 @@ function UserDashboard({reRender}) {
         RequestsService.createItem({
             ...cards.find(c => c.name === name),
             time: new Date(),
-            isApproved: false,
-            isCompleted: false
+            status:RequestStatusEnum.REQUESTED
         })
         setActiveTab('requested');
         //hack to force rerender a component

@@ -8,6 +8,7 @@ import { useState } from 'react';
 import * as SlotsService from '../Services/SlotsService';
 import * as RequestsService from '../Services/RequestsService';
 import SlotModal from '../SlotModal/SlotModal';
+import { RequestStatusEnum } from '../Models/RequestStatusEnum';
 function HostDashboard({reRender}) {
   const navigate = useNavigate()
   const handleBack = () => {
@@ -22,7 +23,7 @@ function HostDashboard({reRender}) {
   const requests = RequestsService.readAllItems();
   const handleApproveClick = (name) => {
     var item = requests.find(i => i.name === name);
-    item.isApproved = true;
+    item.status = RequestStatusEnum.APPROVED;
     RequestsService.updateItem(name, item)
     reRender()
   };
@@ -33,7 +34,16 @@ function HostDashboard({reRender}) {
   };
   const handleCompleteClick = (name) => {
     var item = requests.find(i => i.name === name);
-    item.isCompleted = true;
+    item.status = RequestStatusEnum.COMPLETED;
+    item.endTime = new Date()
+    RequestsService.updateItem(name, item)
+    //hack to force rerender a component
+    reRender();
+  };
+  const handleStartClick = (name) => {
+    var item = requests.find(i => i.name === name);
+    item.status = RequestStatusEnum.APPROVED;
+    item.startTime = new Date()
     RequestsService.updateItem(name, item)
     //hack to force rerender a component
     reRender();
@@ -83,7 +93,7 @@ function HostDashboard({reRender}) {
           <HostCard key={index} {...card} requested={false} onEdit={handleEditModal}/>
         ))}
         {activeTab === 'requests' &&requests.map((card, index) => (
-          <HostCard key={index} {...card} requested={true} onApproved={handleApproveClick} onRejected={handleRejectClick} onComplete={handleCompleteClick}/>
+          <HostCard key={index} {...card} requested={true} onApproved={handleApproveClick} onStart={handleStartClick} onRejected={handleRejectClick} onComplete={handleCompleteClick}/>
         ))}
       </div>
       {showAddModal && <SlotModal modalType="add" refreshCards={refreshCards} onClose={handleCloseAddModal} />}
